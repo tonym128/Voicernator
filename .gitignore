@@ -4,3 +4,4 @@
 models/
 pauses/
 words/
+__pycache__/
