@@ -46,6 +46,9 @@ wf.close()  # close audiofile
 with open('words.sh','w') as f:
     for word in list_of_words:
         if word.conf == 1:
+            if not os.path.exists(f"./words"):
+                os.makedirs(f"./words")
+
             if not os.path.exists(f"./words/{word.word}"):
                 os.makedirs(f"./words/{word.word}")
             guid = str(uuid.uuid4())
@@ -54,12 +57,12 @@ with open('words.sh','w') as f:
             f.write(command)
 
 with open('pauses.sh','w') as f:
-    start = list_of_words[0].end
-    end = 0
+    start = list_of_words[0].end + 0.1
+    end = 0.1
     for word in list_of_words[1:]:
         if not os.path.exists(f"./pauses"):
             os.makedirs(f"./pauses")
-        end = word.start
+        end = word.start - 0.1
         duration = round(end - start,3)
         if duration > 0:
             command = f"ffmpeg -i {audio_filename} -ss {start} -t {duration} .//pauses//{duration}.wav\n"

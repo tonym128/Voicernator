@@ -27,7 +27,8 @@ for word in text:
     # insert breath
     files = os.listdir("./pauses")
 
-    filelist.append(f"./pauses/{random.choice(files)}")
+    #filelist.append(f"./pauses/{random.choice(files)}")
+    filelist.append(f"./pauses/0.11.wav")
 
 filelist.append("output.wav")
 print (*filelist)
